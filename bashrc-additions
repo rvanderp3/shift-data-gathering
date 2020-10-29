@@ -1,0 +1,10 @@
+
+function diag_output_view_log() {
+    SEARCH=$1
+    if [ ! -z "$2" ]; then SEARCH="$2_$SEARCH"; fi
+    FILES=`ls ./var/log/containers/*$SEARCH*`
+    for FILE in $FILES; do echo ===== $FILE; cat $FILE; printf "\n\n"; done | vi -
+}
+
+alias diag_output_unpack_logs='for FILE in `ls *.tar.gz`; do tar xvf $FILE; done'
+alias diag_output_process_journals='pod_view.py `ls *.journal.log`'
